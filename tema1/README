@@ -1,0 +1,38 @@
+README
+Nume: Radu Alberto-Mihai 
+Grupa: 331CC
+
+marketplace.py :
+
+    Pentru implementarea marketului am folosit urmatoarele metode in cadrul clasei Marketplace:
+        register_producer: aceasta metoda atribuie un id unui producator si returneaza id ul
+
+        publish:in cadrul acestei metode se adauga un produs dat ca parametru in lista produselor, daca este loc in lista si se returneaza true, daca nu mai este spatiu in lista se returneaza false si se incearca adaugarea mai tarziu
+
+        new_cart: se creeaza un carucior nou pentru consumator si se returneaza id ul noului carucior creat
+
+        add_to_cart: se cauta produsul dat ca parametru in lista de produse, iar daca este gasit se adauga in cart ul al carui id este dat ca parametru  si se elimina din lista de produse, returnandu-se true, iar in cazul in care produsul nu este gasit se returneaza false.
+
+        remove_from_cart: se cauta un produs dar ca parametru in cart, iar daca este gasit se elimina din cart si sa adauga in lista de produse
+
+        place_order: creaza o lista cu produsele dintr un cart al carui id este dat ca parametru si la final elimina cart ul din lista de cart uri si se returneaza lista de produse din cart ul eliminat anterior
+
+
+producer.py:
+
+    Pentru implementarea producerului am folosit metoda run a clasei Producer, in cadrul careia, intr un while infinit se publica in continuu produse.
+In cadrul buclei pentru fiecare produs, din lista de produse, se extrag datele acestuia si se incearca publicarea prin metoda publish a acestuia pe market in functie de cantitatea extrasa anterior.
+In cazul in care nu s a putut realiza publicarea, se asteapta un waiting_time pentru republicara produsului, iar in cazul in care publicarea a fost realizara cu succes, se va astepta un waiting time, pana produsul este realizat din nou, pentru a fi publicat.
+
+
+consumer.py :
+
+    Pentru implementarea consumerului am folosit metodele:
+        add_product: in cadrul careia se incearca adaugarea unei anumite cantitati date ca parametru de produs un produs dat ca parametru intr un anumit cart, al carui id este dat ca parametru, iar daca produsul nu este disponibil, se asteapta un waiting_time si se incearca din nou adaugarea.
+
+        remove_product: in cadrul acestei metode se elimina o anumita cantitate data ca parametru, de produs dat ca parametru, dintr un cart, al carui id este dat ca parametru
+
+        run: in metoda run se creaza cate un nou cart si se extrag tipul comenzii, cantitatea si tipul produsului pentru care trebuie aplicat operatia de add sau remove. Se obtine lista finala de produse din cadrul caruciorului si se printeza produsele cumparate.
+
+Tema a fost utila deoarece m-a ajutat sa inteleg mai bine cum functioneaza elementele de sincronizare in Python cat si pentru obisnuita cu limbajul.
+
