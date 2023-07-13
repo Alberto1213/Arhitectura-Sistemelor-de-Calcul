@@ -1,0 +1,84 @@
+Radu Alberto 331CC 2023
+Tema2 ASC
+
+README
+
+Pentru rezolvarea temei am abordat urmatoarele solutii:
+
+A)In solutia neoptimizata am implementat functii care sa mi calculeze transpusa unei matrici oarecare , unei matrici superior triunghiulare , produsul dintre doua matrici(pentru produsul Bt*Bt),
+produsul dintre o matrice superior triunghiulara si una oarecare ( pentru AB) si produsul dintre o matrice oarecare si o matrice inferior triunghiulara (pentru produsul ABAt , At transpus devenind o matrice inferior triunghiulara prin transpunerea unei matrici superior triunghiulare. Am apelat functile implementate pentru a calcula succesiv transpusele lui A si B , apoi pentru produsul AB , pentru produsul ABAt , iar in final Pentru produsul Bt*Bt . Dupa ce am obtinut cele doua produse am alocat o noua matrice R pentru rezultatul ecuatiei , iar parcurgand cu doua for uri am adunat cele doua matrici punctual , obtinand rezultatul final in R . La final am dezalocat variabilele folosite.Am tinut cont atat pentru inmultirile care includ o matrice superior triunghiulara sau una inferior triunghiulara cat si pentru transpusa unei astfel de matrici de propietatile acesteia.
+
+timpii de rulare:
+
+Run=./tema2_neopt: N=400: Time=1.016118
+Run=./tema2_neopt: N=800: Time=8.534468
+Run=./tema2_neopt: N=1200: Time=20.206736
+
+timpii de rulare pentru grafic:
+
+Run=./tema2_neopt: N=200: Time=0.104710
+Run=./tema2_neopt: N=400: Time=0.956581
+Run=./tema2_neopt: N=600: Time=3.182436
+Run=./tema2_neopt: N=800: Time=8.718261
+Run=./tema2_neopt: N=1000: Time=13.848362
+Run=./tema2_neopt: N=1200: Time=24.770191
+
+B)
+In solutia care foloseste functiile blas am calculat mai intai produsul BtBt folosind functia cblas_dgemm , retinut in matricea T , pentru a putea "strica" matricea B pe mai departe.Apoi am calculat 
+produsul AB , retinut in B , folosind cblas_dtrmm , ca in final sa calculez in T += BAt tot folosind cblas_dtrmm.Am dezalocat variabila T dupa return. 
+
+timpii de rulare:
+
+Run=./tema2_blas: N=400: Time=0.088965
+Run=./tema2_blas: N=800: Time=0.397456
+Run=./tema2_blas: N=1200: Time=1.093276
+
+
+
+timpii de rulare pentru grafic:
+
+Run=./tema2_blas: N=200: Time=0.007443
+Run=./tema2_blas: N=400: Time=0.043852
+Run=./tema2_blas: N=600: Time=0.194968
+Run=./tema2_blas: N=800: Time=0.429401
+Run=./tema2_blas: N=1000: Time=0.721585
+Run=./tema2_blas: N=1200: Time=1.245487
+
+C)
+In solutia optimizata se aduc imbunatatiri codului pentru a avea unor timpi  mai buni, avand insa aceeasi complexitate. 
+Imbunatatirile se fac prin:
+i)optimizarea constantelor
+ii)al accesului la vectori prin pointeri si adrese de memorie 
+iii)optimizarea buclelor prin unlooping de 10.
+Am folosit doua functii care calculeaza transpusele unei matrici oarecare , respectiv unei matrici triunghiular superioare , tinanad cont de propietatile specifice ale acesteia.
+Inmultirea matricilor am implementat o in functia solver , tinand de fiecare data cont de propietatile matricii triunghiulare.
+
+Se observa ca de la varianta neoptimizata la varianta optimizata referintele la cache D si la cache LL scad .Numarul de branch uri precum si numarul de branch misspredict uri scade.
+
+timpi de rulare:
+
+Run=./tema2_opt_m: N=400: Time=0.505439
+Run=./tema2_opt_m: N=800: Time=3.122021
+Run=./tema2_opt_m: N=1200: Time=10.426901
+
+timpii de rulare pentru grafic:
+
+Run=./tema2_opt_m: N=200: Time=0.105688
+Run=./tema2_opt_m: N=400: Time=0.505935
+Run=./tema2_opt_m: N=600: Time=1.363953
+Run=./tema2_opt_m: N=800: Time=3.342931
+Run=./tema2_opt_m: N=1000: Time=5.655946
+Run=./tema2_opt_m: N=1200: Time=8.036417
+
+
+inputul ales pentru grafic este:
+
+6
+200 62 out0
+400 123 out1
+600 290 out4
+800 456 out2
+1000 622 out5
+1200 789 out3
+
+PS:Solutia se bazeaza pe solutia trimisa anul trecut, la care am modificat adecvat codul pentru expresia matriciala de anul acesta, plus cateva imbunatatiri in cod si grafice pentru fiecare solutie imparte.
